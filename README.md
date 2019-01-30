@@ -1,7 +1,8 @@
 # SW-transformation
-The SW-transformation is a fast classifier for binary node classification in bipartite graphs ([Stankova et al., 2015](https://repository.uantwerpen.be/docman/irua/07acff/c5909d64.pdf)).
+The SW-transformation is a fast classifier for binary node classification in bipartite graphs ([Stankova et al., 2015](
+https://hdl.handle.net/10067/1274850151162165141)). Bipartite graphs (or bigraphs), are defined by having two types of nodes such that edges only exist between nodes of the different type (see Fig. 1). 
 ![title](https://github.com/SPraet/SW-transformation/blob/master/Bigraph.PNG)
-It combines the weighted-vote Relational Neighbor (wvRN) classifier with an aggregation function that sums the weights of the top nodes. The transformation optimally considers for each test instance only the weights of the neighboring top nodes (where xik = 1 in the bigraph adjacency matrix) multiplied by the number of training instances in that column which have a positive label (the positive neighbors of the node). The SW-transformation yields very fast run times and allows easy scaling of the method to big data sets of millions of nodes. 
+The SW-transformation combines the weighted-vote Relational Neighbor (wvRN) classifier with an aggregation function that sums the weights of the top nodes. The transformation optimally considers for each test instance only the weights of the neighboring top nodes multiplied by the number of training instances in that column which have a positive label (the positive neighbors of the node). The SW-transformation yields very fast run times and allows easy scaling of the method to big data sets of millions of nodes. 
 
 ## Installation
 To build and install on your local machine, download and unzip the repository and run:
@@ -16,6 +17,9 @@ If you have pip, you can automatically download and install from the PyPI reposi
 pip install sw-transformation
 ```
 ## Usage
+The SW transformation can be used to calculate the probability of a node in a bipartite graph to belong to the positive class. Three top node weight functions are included: simple weight assignment, inverse degree and hyperbolic tangent. Users can also directly insert the top node weights, using their own weight function.
+
+**SW-transformation**(weight_function='tanh', weights=None)
 
 ### Parameters
 * weight_function : 'tanh', 'inverse', 'simple' or 'own' (default='tanh'). 
@@ -48,11 +52,21 @@ auc = roc_auc_score(y_test, pred_scores)
 * fit(X, y)  -  Fit the model according to the given training data.
 * predict_proba(X)  -  Probability estimates.
 
+X: sparse matrix, shape (n_bottom_nodes, n_top_nodes): the adjacency matrix 
+y: array_like, shape(n_bottom_nodes, 1): the labels
+
 ## Authors
 
-* Stiene Praet
-* Marija Stankova
+Stiene Praet
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/SPraet/SW-transformation/blob/master/LICENSE) file for details
+
+## Acknowledgements
+Based on the work of Marija Stankova, David Martens and Foster Provost
+
+## References
+Stankova, M., Martens, D., & Provost, F. (2015). Classification over bipartite graphs through projection. (Research paper / University of Antwerp. Faculty of Applied Economics ; 2015-001 D/2015/1169/001). Full text (open access): https://repository.uantwerpen.be/docman/irua/07acff/c5909d64.pdf
+
+
