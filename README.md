@@ -1,5 +1,5 @@
 # SW-transformation
-The [SW-transformation](https://repository.uantwerpen.be/docman/irua/07acff/c5909d64.pdf) is a fast classifier for binary node classification in bipartite graphs.
+The SW-transformation is a fast classifier for binary node classification in bipartite graphs ([Stankova et al., 2015](https://repository.uantwerpen.be/docman/irua/07acff/c5909d64.pdf)).
 ![title](https://github.com/SPraet/SW-transformation/blob/master/Bigraph.PNG)
 It combines the weighted-vote Relational Neighbor (wvRN) classifier with an aggregation function that sums the weights of the top nodes. The transformation optimally considers for each test instance only the weights of the neighboring top nodes (where xik = 1 in the bigraph adjacency matrix) multiplied by the number of training instances in that column which have a positive label (the positive neighbors of the node). The SW-transformation yields very fast run times and allows easy scaling of the method to big data sets of millions of nodes. 
 
