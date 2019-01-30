@@ -53,6 +53,7 @@ auc = roc_auc_score(y_test, pred_scores)
 * predict_proba(X)  -  Probability estimates.
 
 X: sparse matrix, shape (n_bottom_nodes, n_top_nodes): the adjacency matrix 
+
 y: array_like, shape(n_bottom_nodes, 1): the labels
 
 ## Authors
