@@ -62,7 +62,7 @@ y: array_like, shape(n_bottom_nodes, 1): the binary class labels (0 for negative
 
 ## Authors
 
-Stiene Praet
+Stiene Praet <stiene.praet@uantwerp.be>
 
 ## License
 
