@@ -4,6 +4,9 @@ SW transformation
 """
 
 # Authors: Stiene Praet <stiene.praet@uantwerp.be>
+# Reference: Stankova, M., Martens, D., & Provost, F. (2015). Classification over bipartite graphs through projection. 
+# (Research paper / University of Antwerp. Faculty of Applied Economics ; 2015-001 D/2015/1169/001). 
+# Full text (open access): https://repository.uantwerpen.be/docman/irua/07acff/c5909d64.pdf
 
 import numpy as np
 
