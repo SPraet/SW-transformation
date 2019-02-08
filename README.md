@@ -4,10 +4,9 @@ https://hdl.handle.net/10067/1274850151162165141)). Bipartite graphs (or bigraph
 
 ![title](https://github.com/SPraet/SW-transformation/blob/master/Bigraph.PNG)
 
-**Fig. 1: Bigraph, top node projection and bottom node projection (left), adjacency matrix representation of the bigraph (right)**([Stankova et al., 2015, p. 8](
-https://hdl.handle.net/10067/1274850151162165141)).
+**Fig. 1: Bigraph, top node projection and bottom node projection (left), adjacency matrix representation of the bigraph (right)**  (Stankova et al., 2015, p. 8).
 
-The SW-transformation combines the weighted-vote Relational Neighbor (wvRN) classifier with an aggregation function that sums the weights of the top nodes. The transformation optimally considers for each test instance only the weights of the neighboring top nodes multiplied by the number of training instances in that column which have a positive label (the positive neighbors of the node). The SW-transformation yields very fast run times and allows easy scaling of the method to big data sets of millions of nodes.
+The SW-transformation combines the weighted-vote Relational Neighbor (wvRN) classifier with an aggregation function that sums the weights of the top nodes. The transformation optimally considers for each test instance only the weights of the neighboring top nodes multiplied by the number of training instances in that column which have a positive label (the positive neighbors of the node). The SW-transformation yields very fast run times and allows easy scaling of the method to big data sets of millions of nodes (Stankova et al., 2015).
 
 ## Installation
 To build and install on your local machine, download and unzip the repository and run from there:
