@@ -10,6 +10,7 @@ SW transformation
 
 import numpy as np
 
+EPS= 1e-20
 class SW_transformation:
     def __init__(self, weight_function='tanh', weights=None):
         """
@@ -39,11 +40,11 @@ class SW_transformation:
             Target vector relative to X.
         """
         if self.weight_function == 'tanh':
-            top_node_weights = np.tanh(1/np.sum(X, axis=0)+1e-20)
+            top_node_weights = np.tanh(1/(np.sum(X, axis=0)+EPS))
         elif self.weight_function == 'simple':
             top_node_weights = np.ones((1,X.shape[1]))
         elif self.weight_function == 'inverse':
-            top_node_weights = 1/(np.sum(X,axis=0)+1e-20)
+            top_node_weights = 1/(np.sum(X,axis=0)+EPS)
         elif self.weight_function == 'own':
             top_node_weights = self.weights
           
@@ -55,7 +56,7 @@ class SW_transformation:
             self.top_node_scores= np.array(nsk.T)*np.array(top_node_weights)
         except:
             raise Exception('please enter top node weights with correct dimensions (1, n_top_nodes)')
-        self.Z=np.array(top_node_weights)*np.array(np.sum(X,axis=0)+1e-20)
+        self.Z=np.array(top_node_weights)*np.array(np.sum(X,axis=0)+EPS)
         return self
        
         
@@ -74,5 +75,5 @@ class SW_transformation:
 
         top_node_sum= X*self.top_node_scores.T
         Z_sum=X*self.Z.T
-        pred_scores= np.divide(top_node_sum, Z_sum+1e-20)
+        pred_scores= np.divide(top_node_sum, Z_sum+EPS)
         return pred_scores
