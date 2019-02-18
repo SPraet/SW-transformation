@@ -39,22 +39,19 @@ The SW transformation can be used to calculate the probability of a node in a bi
 
 ### Examples
 ```
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import GridSearchCV
 import numpy as np
 import SW
 
-matrix = load_adjacency_matrix_here #sparse matrix
-label = load_node_labels_here
+X = load_adjacency_matrix_here #sparse matrix
+y = load_node_labels_here
 
-#split your data in training and testing
-X_train, X_test, y_train, y_test = train_test_split(matrix['matrix'], label['label'], test_size=1/3, shuffle=False)
+custom = lambda X: np.ones((X.shape[1],)) # define custom weight function
 
-sw = SW.SW_transformation(weight_function='inverse')
-sw.fit(X_train, y_train)
-pred_scores = sw.predict_proba(X_test)
-
-auc = roc_auc_score(y_test, pred_scores)
+sw = SW.SW_transformation()
+parameters = {'weight_function':('tanh','inverse','simple',custom)}
+clf = GridSearchCV(sw, parameters, cv=5, scoring = 'roc_auc', verbose=3)
+clf.fit(X,y)
 ```
 ### Methods
 * fit(X, y)  -  Fit the model according to the given training data.
@@ -64,13 +61,16 @@ X: sparse matrix, shape(n_bottom_nodes, n_top_nodes): the adjacency matrix (see 
 
 y: array_like, shape(n_bottom_nodes, 1): the binary class labels (0 for negative and 1 for positive instance)
 
-## Authors
+## Authors and contributors
 
 Stiene Praet <stiene.praet@uantwerp.be>
+
+[ddvlamin](https://github.com/ddvlamin)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/SPraet/SW-transformation/blob/master/LICENSE) file for details
+
 
 ## Acknowledgements
 Based on the work of Marija Stankova, David Martens and Foster Provost
